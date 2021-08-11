@@ -15,7 +15,7 @@
 
     <!-- Radio button grupa za odabir tipa tabele iz baze koji želimo da menjamo -->
     <form action="">
-        <div id="odabir_tabele">
+        <div id="odabir_tabele" method="post">
             <input type="radio" name="odabir_tabele" id="radio_kategorija" value="kategorija">
             <label for="radio_kategorija">kategorija</label>
             <input type="radio" name="odabir_tabele" id="radio_novosti" value="novosti">
