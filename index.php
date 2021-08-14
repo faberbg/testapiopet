@@ -10,17 +10,18 @@
     integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
     crossorigin="anonymous"></script>
 </head>
-<?php 
-    include "Database.php";
-    $mydb = new Database('rest');
+<?php
+    
+    include "obrada.php";
+
 ?>
 <body>
     <h1>Forma za manipulaciju sa API-em</h1>
 
     <!-- Radio button grupa za odabir tipa tabele iz baze koji želimo da menjamo -->
-    <form action="">
-        <div id="odabir_tabele" method="post">
-            <input type="radio" name="odabir_tabele" id="radio_kategorija" value="kategorija">
+    <form action="" method="post">
+        <div id="odabir_tabele">
+            <input type="radio" name="odabir_tabele" id="radio_kategorija" value="kategorije">
             <label for="radio_kategorija">kategorija</label>
             <input type="radio" name="odabir_tabele" id="radio_novosti" value="novosti">
             <label for="radio_novosti">novosti</label>
@@ -55,12 +56,12 @@
 
             <label for="kategorija_odabir">Kategorija:</label>
             <select name="kategorija_odabir" id="kategorija_odabir">
-                <?php
-                    $mydb->select("kategorije","*",null,null,null);
-                    while($red=$mydb->getResult()->fetch_object()):
-                ?>
+            <?php
+                $mydb->select("kategorije","*",null,null,null);
+                while($red=$mydb->getResult()->fetch_object()):
+            ?>
                 <option value="<?php echo $red->id;?>"><?php echo $red->kategorija;?></option>
-                <?php endwhile;?>
+                <?php endwhile;?>        
             </select>
         </div>
 
@@ -112,7 +113,7 @@
 
         </div>
         <div id="submit">
-            <button type="button">Posalji zahtev</button>
+            <input type="submit" name="posalji" id="posalji" value="Posalji zahtev">
         </div>
     </form>
     
@@ -308,7 +309,7 @@
 
     $("input[name=http_zahtev]").on('click',prikaziBlok);
     $("input[name=odabir_tabele]").on('click',resetHTTP);
-    //$("button").on('click', posaljiZahtev);
+    // $("button").on('click', posaljiZahtev);
 
 
 

@@ -67,14 +67,51 @@ class Database{
           $this->ExecuteQuery($q);
     }
 
-    //funkcija insert
-    function insert(){}
+    //funkcija insert // prosledjujemo tabelu,redove i vrednost koju upisujemo
+    function insert($table="novosti",$rows="naslov, tekst, datumvreme, kategorija_id", $values){
+        $query_values = implode(',',$values);//vrednosti koje dobije odvaja zarezom i upisuje u string
+        $q ='INSERT INTO '.$table;
+        if($rows!=null){
+            $q.='('.$rows.')';
+        }
+        $q.=" VALUES($query_values)";
+        // echo($q);
+        if($this->ExecuteQuery($q)){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
-    //funkcija update
-    function update(){}
+
+
+
+    //funkcija update  
+    function update($table, $id, $keys,$values){
+        $query_values ="";
+        $set_query = array();
+        for($i =0; $i<sizeof($keys); $i++){
+            $set_query[] = "$keys[$i] = $values[$i]";
+        }
+        $query_values = implode(",", $set_query);  
+        $q = "UPDATE $table SET $query_values WHERE id=$id";
+        if($this->ExecuteQuery($q) && $this->affected>0){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
     //funkcija delete
-    function delete(){}
+    function delete($table, $id, $id_value){
+        $q = "DELETE FROM $table WHERE $table.$id=$id_value";
+        // echo $q;
+        if($this->ExecuteQuery($q)){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
 }
 
