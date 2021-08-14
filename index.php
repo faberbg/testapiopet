@@ -56,7 +56,7 @@
             <label for="kategorija_odabir">Kategorija:</label>
             <select name="kategorija_odabir" id="kategorija_odabir">
                 <?php
-                    $mydb->select("kategorija","*",null,null,null);
+                    $mydb->select("kategorije","*",null,null,null);
                     while($red=$mydb->getResult()->fetch_object()):
                 ?>
                 <option value="<?php echo $red->id;?>"><?php echo $red->kategorija;?></option>

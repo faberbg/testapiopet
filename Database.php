@@ -52,10 +52,10 @@ class Database{
 
     //funkcija select // treba nam koja je tabela , koji su redovi
     function select($table="novosti",$rows="*",$join_table="kategorije",$join_key1="kategorija_id",$join_key2="id",$where=null,$order=null){
-        $q = 'SELECT'.$rows.' FROM'.$table; //  . spaja stringoce kao npr. concat
+        $q = 'SELECT '.$rows.' FROM '.$table; //  . spaja stringoce kao npr. concat
         // SELECT * FROM novosti;
         if($join_table!=null){
-            $q.=' JOIN'.$join_table.'ON'.$table.'.'.$join_key1.'='.$join_table.'.'.$join_key2;
+            $q.=' JOIN '.$join_table.' ON '.$table.'.'.$join_key1.'='.$join_table.'.'.$join_key2;
             //SELECT * FROM novosti JOIN kategorije ON novosti.kategorija_id=kategorije.id
           }
           if($where!=null){
